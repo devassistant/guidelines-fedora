@@ -28,3 +28,16 @@ from your package automatically.
 * All packages must depend on ``devassistant``.
 * Each package must have an RPM dependency on packages that are specified in
   the file ``/meta.yaml`` in the section ``dependencies``.
+
+##Macros
+
+> TBA
+
+##Install section
+
+* All files are installed via the ``%install_assistant`` macro
+
+##Files section
+
+* The macro denoting the parent directory where the installed files go is
+  %{assistant_path}
