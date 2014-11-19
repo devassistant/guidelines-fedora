@@ -25,7 +25,8 @@ from your package automatically.
 
 ##Dependencies
 
-* All packages must depend on ``devassistant``.
+* All packages must have Requires on ``devassistant``.
+* All packages must have BuildRequires on ``devassistant-devel``. (for macros)
 * Each package must have an RPM dependency on packages that are specified in
   the file ``/meta.yaml`` in the section ``dependencies``.
 
