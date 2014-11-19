@@ -40,4 +40,4 @@ from your package automatically.
 ##Files section
 
 * The macro denoting the parent directory where the installed files go is
-  %{assistant_path}
+  ``%{assistant_path}``
