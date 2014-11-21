@@ -54,10 +54,10 @@ from your package automatically.
 ##Files section
 
 * Package's files and directories are installed into ``%{assistant_path}``.
-* Do not install everything in ``%{assistant_path}``, list each folder
+* Do not install everything like ``%{assistant_path}/*``, list each folder
   separately (e. g. ``assistants``, ``snippets``, ``icons``, etc.).
-* The ``doc`` directory in the DAP should be installed via the ``%doc``, in the
-  same ``%{assistant_path}``
+* The ``doc`` directory in the DAP should be installed via the ``%doc`` macro,
+  in the same ``%{assistant_path}`` directory.
 
 ##Sample SPEC
 
