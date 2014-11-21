@@ -61,7 +61,7 @@ from your package automatically.
 
 ##Sample SPEC
 
-``
+```
 Name:           dap-openscad
 Version:        0.0.2dev
 Release:        1%{?dist}
@@ -83,9 +83,9 @@ We use it in our 3D printing lab to store our 3D printers on Github.
 
 Projects created with this assistant have a `Makefile` to build the 3D models
 form OpenSCAD sources.
-To do so, run `make`. You can also generate the images by `make images` or
-print plates with `make arrange`.
-Observe the generated `Makefile` to see all available options.
+To do so, run 'make'. You can also generate the images by `make images` or
+print plates with 'make arrange'.
+Observe the generated 'Makefile' to see all available options.
 
 
 %prep
@@ -102,4 +102,4 @@ Observe the generated `Makefile` to see all available options.
 %changelog
 Wed Nov 19 2014 tradej <tradej@redhat.com> - 0.0.2dev-1
 Initial package
-``
+```
