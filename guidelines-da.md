@@ -56,3 +56,50 @@ from your package automatically.
 * Package's files and directories are installed into ``%{assistant_path}``.
 * Do not install everything in ``%{assistant_path}``, list each folder
   separately (e. g. ``assistants``, ``snippets``, ``icons``, etc.).
+* The ``doc`` directory in the DAP should be installed via the ``%doc``, in the
+  same ``%{assistant_path}``
+
+##Sample SPEC
+
+``
+Name:           dap-openscad
+Version:        0.0.2dev
+Release:        1%{?dist}
+Summary:        Create 3D printing projects for OpenSCAD
+
+License:        GPLv3+ and GPLv2 with exceptions
+URL:            https://github.com/3DprintFIT/dap-openscad
+Source0:        %{name}-%{version}.dap
+
+BuildRequires:  devassistant-devel
+Requires:       devassistant
+Requires:       dap-common_args
+Requires:       dap-git
+Requires:       dap-github
+
+%description
+This assistants helps you to create new OpenSCAD project for 3D printing.
+We use it in our 3D printing lab to store our 3D printers on Github.
+
+Projects created with this assistant have a `Makefile` to build the 3D models
+form OpenSCAD sources.
+To do so, run `make`. You can also generate the images by `make images` or
+print plates with `make arrange`.
+Observe the generated `Makefile` to see all available options.
+
+
+%prep
+%setup -q
+
+%install
+%install_assistant
+
+%files
+%doc %{assistant_path}/doc/openscad
+%{assistant_path}/assistants/crt/openscad
+%{assistant_path}/icons/openscad
+
+%changelog
+Wed Nov 19 2014 tradej <tradej@redhat.com> - 0.0.2dev-1
+Initial package
+``
