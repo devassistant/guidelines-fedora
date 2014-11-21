@@ -25,20 +25,34 @@ from your package automatically.
 
 ##Dependencies
 
-* All packages must have Requires on ``devassistant``.
-* All packages must have BuildRequires on ``devassistant-devel``. (for macros)
-* Each package must have an RPM dependency on packages that are specified in
-  the file ``/meta.yaml`` in the section ``dependencies``.
+* All packages must Require ``devassistant``.
+* All packages must BuildRequire ``devassistant-devel``. (for macros)
+* Each package must Require packages that are specified in the file
+  ``/meta.yaml`` in the section ``dependencies``.
 
 ##Macros
 
-> TBA
+* The macro denoting the parent directory where the package files go is
+  ``%{assistant_path}``
+
+##Check section
+
+> Idea
+
+* You must run ``da pkg lint %{shortname}-%{version}.dap`` (or similar, if your
+  package's name differs) in the ``%check`` section, and the lint must produce
+  no errors.
 
 ##Install section
 
-* All files are installed via the ``%install_assistant`` macro
+* Normally, all files are installed via the ``%install_assistant`` macro
+* If installed manually, the package files are installed into
+  ``%{buildroot}%{assistant_path}`` in subdirectories conforming to the package
+  architecture, i. e. the ``assistants/foo`` directory is installed into
+  ``%{buildroot}%{assistant_path}/assistants/foo``.
 
 ##Files section
 
-* The macro denoting the parent directory where the installed files go is
-  ``%{assistant_path}``
+* Package's files and directories are installed into ``%{assistant_path}``.
+* Do not install everything in ``%{assistant_path}``, list each folder
+  separately (e. g. ``assistants``, ``snippets``, ``icons``, etc.).
