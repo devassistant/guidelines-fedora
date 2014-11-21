@@ -61,14 +61,16 @@ from your package automatically.
 
 ##Sample SPEC
 
-    Name:           dap-openscad
+    %global shortname openscad
+
+    Name:           dap-%{shortname}
     Version:        0.0.2dev
     Release:        1%{?dist}
     Summary:        Create 3D printing projects for OpenSCAD
 
     License:        GPLv3+ and GPLv2 with exceptions
     URL:            https://github.com/3DprintFIT/dap-openscad
-    Source0:        %{name}-%{version}.dap
+    Source0:        %{shortname}-%{version}.dap
 
     BuildRequires:  devassistant-devel
     Requires:       devassistant
@@ -100,5 +102,5 @@ from your package automatically.
 
     %changelog
     Wed Nov 19 2014 tradej <tradej@redhat.com> - 0.0.2dev-1
-    * Initial package
+    - Initial package
 
