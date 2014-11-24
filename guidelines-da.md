@@ -25,7 +25,7 @@ from your DAP automatically.
 ##Dependencies
 
 * All packages must Require ``devassistant``.
-* All packages must BuildRequire ``devassistant-devel``. (for macros)
+* All packages must BuildRequire ``devassistant-devel``. (for macros and lint)
 * Each package must Require packages that are specified in the file
   ``/meta.yaml`` in the section ``dependencies``. These names, of course, must
   contain the ``dap-`` prefix.
