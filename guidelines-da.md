@@ -4,22 +4,21 @@
 
 DevAssistant provides an easy extendability through Assistants. These
 assistants are normally distributed via the [DevAssistant Package
-Index](https://dapi.devassistant.org). If you, however, want to include an
-Assistant into the main Fedora repositories, you can do so. This document
-outlines the rules involved.
+Index](https://dapi.devassistant.org) in the form of DAP (DevAssistant Package)
+files. If you want to include a DAP into the main Fedora repositories, you can
+do so. This document outlines the rules involved.
 
-##How to package an Assistant
+##How to package a DAP
 
 We recommend you use the tool
 [dap2rpm](https://github.com/devassistant/dap2rpm), which creates a SPEC file
-from your package automatically.
+from your DAP automatically.
 
 ##Naming guidelines
 
-* Every package name must start with ``dap-``, which is followed by the name of
-  the Assistant itself, all lowercase. For example, the package ``Openscad``
-  will be called ``dap-openscad``.
-
+* Every (RPM) package name must start with ``dap-``, which is followed by the
+  name of the Assistant itself, all lowercase. For example, the package
+  ``Openscad`` will be called ``dap-openscad``.
 * There is no difference between packages that provide Assistants, and those
   that provide only auxiliary files, snippets, metapackages etc.
 
@@ -28,12 +27,13 @@ from your package automatically.
 * All packages must Require ``devassistant``.
 * All packages must BuildRequire ``devassistant-devel``. (for macros)
 * Each package must Require packages that are specified in the file
-  ``/meta.yaml`` in the section ``dependencies``.
+  ``/meta.yaml`` in the section ``dependencies``. These names, of course, must
+  contain the ``dap-`` prefix.
 
 ##Macros
 
 * The macro denoting the parent directory where the package files go is
-  ``%{assistant_path}``
+  ``%{assistant_path}``. This currently expands to ``/usr/share/devassistant``.
 
 ##Check section
 
@@ -47,9 +47,9 @@ from your package automatically.
 
 * Normally, all files are installed via the ``%install_assistant`` macro
 * If installed manually, the package files are installed into
-  ``%{buildroot}%{assistant_path}`` in subdirectories conforming to the package
-  architecture, i. e. the ``assistants/foo`` directory is installed into
-  ``%{buildroot}%{assistant_path}/assistants/foo``.
+  ``%{buildroot}%{assistant_path}`` in subdirectories conforming to the DAP
+  layout, i. e. the ``assistants/crt/foo`` directory is installed into
+  ``%{buildroot}%{assistant_path}/assistants/crt/foo``.
 
 ##Files section
 
