@@ -24,7 +24,11 @@ from your DAP automatically.
 
 ##Dependencies
 
-* All packages must Require ``devassistant``.
+* All packages must Require ``devassistant-ui``. This means that the user has
+  at least one user interface for DevAssistant installed, so they can use the
+  DAP without futher installing anything.
+* Requires: ``devassistant`` is not allowed, as that would potentially install
+  more interfaces for DA on the user's machine.
 * All packages must BuildRequire ``devassistant-devel``. (for macros and lint)
 * Each package must Require packages that are specified in the file
   ``/meta.yaml`` in the section ``dependencies``. These names, of course, must
@@ -70,10 +74,10 @@ from your DAP automatically.
 
     License:        GPLv3+ and GPLv2 with exceptions
     URL:            https://github.com/3DprintFIT/dap-openscad
-    Source0:        https://dapi.devassistant.org/download/openscad-0.0.2.dap
+    Source0:        https://dapi.devassistant.org/download/%{shortname}-%{version}.dap
 
     BuildRequires:  devassistant-devel
-    Requires:       devassistant
+    Requires:       devassistant-ui
     Requires:       dap-common_args
     Requires:       dap-git
     Requires:       dap-github
@@ -101,6 +105,6 @@ from your DAP automatically.
     %{assistant_path}/icons/%{shortname}*
 
     %changelog
-    Wed Nov 19 2014 tradej <tradej@redhat.com> - 0.0.2dev-1
+    * Wed Nov 19 2014 tradej <tradej@redhat.com> - 0.0.2-1
     - Initial package
 
