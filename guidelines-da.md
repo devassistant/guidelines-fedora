@@ -1,6 +1,6 @@
 #DA Packaging guidelines
 
-> Draft 0.1
+> Draft 0.2
 
 DevAssistant provides an easy extendability through Assistants. These
 assistants are normally distributed via the [DevAssistant Package
@@ -51,7 +51,7 @@ repositories as dap2rpm.
   permissible to install the source DAP directly.
 * If needed, you may patch the source files in this section.
 
-##Build seciton
+##Build section
 
 * You must re-pack the (optionally patched) DAP in the ``%build`` section using
   the macro ``%repack_assistant``. This is needed for installing and checking.
