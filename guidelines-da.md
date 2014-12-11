@@ -12,7 +12,8 @@ do so. This document outlines the rules involved.
 
 We recommend you use the tool
 [dap2rpm](https://github.com/devassistant/dap2rpm), which creates a SPEC file
-from your DAP automatically.
+from your DAP automatically. It is packaged in Fedora Rawhide and 21's
+repositories as dap2rpm.
 
 ##Naming guidelines
 
@@ -29,23 +30,31 @@ from your DAP automatically.
   DAP without futher installing anything.
 * Requires: ``devassistant`` is not allowed, as that would potentially install
   more interfaces for DA on the user's machine.
-* All packages must BuildRequire ``devassistant-devel``. (for macros and lint)
+* All packages must BuildRequire ``devassistant-devel``. (for macros,
+  installation and lint)
 * Each package must Require packages that are specified in the file
   ``/meta.yaml`` in the section ``dependencies``. These names, of course, must
-  contain the ``dap-`` prefix.
+  contain the ``dap-`` prefix. This is generated automatically by dap2rpm.
+
+##Architecture
+
+* All daps must be architecture independent, i. e. ``noarch``.
 
 ##Macros
 
 * The macro denoting the parent directory where the package files go is
   ``%{assistant_path}``. This currently expands to ``/usr/share/devassistant``.
 
-##Check section
+##Prep section
 
-> Idea
+* DAP must be unpacked with ``setup`` like other packages, it is not
+  permissible to install the source DAP directly.
+* If needed, you may patch the source files in this section.
 
-* You must run ``da pkg lint %{shortname}-%{version}.dap`` (or similar, if your
-  package's name differs) in the ``%check`` section, and the lint must produce
-  no errors.
+##Build seciton
+
+* You must re-pack the (optionally patched) DAP in the ``%build`` section using
+  the macro ``%repack_assistant``. This is needed for installing and checking.
 
 ##Install section
 
@@ -55,6 +64,14 @@ from your DAP automatically.
   layout, i. e. the ``assistants/crt/foo`` directory is installed into
   ``%{buildroot}%{assistant_path}/assistants/crt/foo``.
 
+##Check section
+
+* You must run the ``%check_assistant`` macro in the ``%check`` section, and
+  it must pass.
+* If run manually, you must run the command ``da pkg lint -w
+  %{shortname}-%{version}.dap`` (or similar, if your package's name differs).
+  The lint must produce no errors. Warnings are permissible.
+
 ##Files section
 
 * Package's files and directories are installed into ``%{assistant_path}``.
@@ -62,6 +79,8 @@ from your DAP automatically.
   separately (e. g. ``assistants``, ``snippets``, ``icons``, etc.).
 * The ``doc`` directory in the DAP should be installed via the ``%doc`` macro,
   in the same ``%{assistant_path}`` directory.
+* The ``meta.yaml`` file must be installed as
+  ``%{assistant_path}/meta/%{shortname}.yaml``.
 
 ##Sample SPEC
 
@@ -71,6 +90,8 @@ from your DAP automatically.
     Version:        0.0.2
     Release:        1%{?dist}
     Summary:        Create 3D printing projects for OpenSCAD
+
+    BuildArch:      noarch
 
     License:        GPLv3+ and GPLv2 with exceptions
     URL:            https://github.com/3DprintFIT/dap-openscad
@@ -86,25 +107,31 @@ from your DAP automatically.
     This assistants helps you to create new OpenSCAD project for 3D printing.
     We use it in our 3D printing lab to store our 3D printers on Github.
 
-    Projects created with this assistant have a `Makefile` to build the 3D models
-    form OpenSCAD sources.
-    To do so, run `make`. You can also generate the images by `make images` or
-    print plates with `make arrange`.
+    Projects created with this assistant have a `Makefile` to build the 3D models form OpenSCAD sources.
+    To do so, run `make`. You can also generate the images by `make images` or print plates with `make arrange`.
     Observe the generated `Makefile` to see all available options.
 
 
     %prep
-    %setup -q
+    %setup -q -n %{shortname}-%{version}
+
+    %build
+    %repack_assistant
 
     %install
     %install_assistant
 
+    %check
+    %check_assistant
+
     %files
-    %doc %{assistant_path}/doc/%{shortname}*
+    %doc %{assistant_path}/doc/%{shortname}
     %{assistant_path}/assistants/crt/%{shortname}*
-    %{assistant_path}/icons/%{shortname}*
+    %{assistant_path}/files/crt/%{shortname}*
+    %{assistant_path}/icons/crt/%{shortname}*
+    %{assistant_path}/meta/%{shortname}.yaml
 
     %changelog
-    * Wed Nov 19 2014 tradej <tradej@redhat.com> - 0.0.2-1
-    - Initial package
+    * Thu Dec 11 2014 Tomas Radej <tradej@redhat.com> - 0.0.2-1
+    Initial package
 
