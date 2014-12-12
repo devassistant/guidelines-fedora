@@ -1,4 +1,4 @@
-#DA Packaging guidelines
+#DAP Packaging guidelines
 
 > Draft 0.2
 
@@ -7,6 +7,10 @@ assistants are normally distributed via the [DevAssistant Package
 Index](https://dapi.devassistant.org) in the form of DAP (DevAssistant Package)
 files. If you want to include a DAP into the main Fedora repositories, you can
 do so. This document outlines the rules involved.
+
+**Note:** Packaged DAPs only work with DevAssistant 0.10.0 and newer. They can
+not be used with DevAssistant versions 0.9.\* packaged in Fedora 21 and
+earlier.
 
 ##How to package a DAP
 
@@ -18,8 +22,8 @@ repositories as dap2rpm.
 ##Naming guidelines
 
 * Every (RPM) package name must start with ``dap-``, which is followed by the
-  name of the Assistant itself, all lowercase. For example, the package
-  ``Openscad`` will be called ``dap-openscad``.
+  name of the Assistant itself, all lowercase. For example, the DAP named
+  ``Openscad`` will be named ``dap-openscad`` in the SPEC file.
 * There is no difference between packages that provide Assistants, and those
   that provide only auxiliary files, snippets, metapackages etc.
 
@@ -28,17 +32,18 @@ repositories as dap2rpm.
 * All packages must Require ``devassistant-ui``. This means that the user has
   at least one user interface for DevAssistant installed, so they can use the
   DAP without futher installing anything.
-* Requires: ``devassistant`` is not allowed, as that would potentially install
-  more interfaces for DA on the user's machine.
+* Requires: ``devassistant`` is not allowed, as that would install more
+  packages for DA than the user may intend or need.
 * All packages must BuildRequire ``devassistant-devel``. (for macros,
   installation and lint)
 * Each package must Require packages that are specified in the file
   ``/meta.yaml`` in the section ``dependencies``. These names, of course, must
-  contain the ``dap-`` prefix. This is generated automatically by dap2rpm.
+  contain the ``dap-`` prefix. These Requires are generated automatically by
+  dap2rpm.
 
 ##Architecture
 
-* All daps must be architecture independent, i. e. ``noarch``.
+* All daps must be architecture independent, i. e. ``BuildArch: noarch``.
 
 ##Macros
 
