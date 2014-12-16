@@ -98,14 +98,16 @@ repositories as dap2rpm.
 * The package ``devassistant-core`` owns the directory ``%{assistant_path}``
   itself and the following subdirectories:
     1. ``%{assistant_path}/{assistants,doc,files,icons,meta,snippets}``
-    2. ``%{assistant_path}/{assistants,files}/{crt,twk,prep,extra}``
-    3. ``%{assistant_path}/files/snippets``
+    2. ``%{assistant_path}/{assistants}/{crt,twk,prep,extra}``
+    3. ``%{assistant_path}/files/{crt,twk,prep,extra,snippets}``
     4. ``%{assistant_path}/icons/{crt,twk,prep,extra}``
 * The RPM-packaged DAP may:
-    * own directories named ``%{shortname}`` in directories listed in points 2
+    * own directories named ``%{shortname}`` in directories listed in point 2
       and 3 of the previous bullet.
         * Example 1: ``%{assistant_path}/assistant/crt/%{shortname}``
         * Example 2: ``%{assistant_path}/files/snippets/%{shortname}``
+    * additionally, own files named ``%{shortname}.yaml`` in the directories
+      listed in point 2.
     * own a directory named ``%{shortname}`` in the directory
       ``%{assistant_path}/doc``
     * own a file named ``%{shortname}.yaml`` in the directory
