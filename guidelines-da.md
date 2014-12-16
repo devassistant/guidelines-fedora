@@ -110,7 +110,7 @@ repositories as dap2rpm.
     * files named ``%{shortname}.yaml`` in the directories
       listed in point 2.
     * a directory named ``%{shortname}`` in the directory
-      ``%{assistant_path}/doc``
+      ``%{assistant_path}/doc/``
     * a file named ``%{shortname}.yaml`` in the directory
       ``%{assistant_path}/meta/``
     * a file named ``%{shortname}.$SUFFIX``, where ``$SUFFIX`` is an image
