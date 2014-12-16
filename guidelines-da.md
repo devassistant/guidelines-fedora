@@ -101,18 +101,19 @@ repositories as dap2rpm.
     2. ``%{assistant_path}/{assistants}/{crt,twk,prep,extra}``
     3. ``%{assistant_path}/files/{crt,twk,prep,extra,snippets}``
     4. ``%{assistant_path}/icons/{crt,twk,prep,extra}``
-* The RPM-packaged DAP may:
-    * own directories named ``%{shortname}`` in directories listed in point 2
+* The RPM-packaged DAP must own the following files/directories if and only
+  if they are present in the upstream DAP:
+    * directories named ``%{shortname}`` in directories listed in point 2
       and 3 of the previous bullet.
         * Example 1: ``%{assistant_path}/assistant/crt/%{shortname}``
         * Example 2: ``%{assistant_path}/files/snippets/%{shortname}``
-    * additionally, own files named ``%{shortname}.yaml`` in the directories
+    * files named ``%{shortname}.yaml`` in the directories
       listed in point 2.
-    * own a directory named ``%{shortname}`` in the directory
+    * a directory named ``%{shortname}`` in the directory
       ``%{assistant_path}/doc``
-    * own a file named ``%{shortname}.yaml`` in the directory
+    * a file named ``%{shortname}.yaml`` in the directory
       ``%{assistant_path}/meta/``
-    * own a file named ``%{shortname}.$SUFFIX``, where ``$SUFFIX`` is an image
+    * a file named ``%{shortname}.$SUFFIX``, where ``$SUFFIX`` is an image
       file suffix (preferably PNG or SVG), in the directories listed in point
       4.
 
