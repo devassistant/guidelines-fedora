@@ -112,7 +112,6 @@ repositories as dap2rpm.
       ``%{assistant_path}/doc``
     * own a file named ``%{shortname}.yaml`` in the directory
       ``%{assistant_path}/meta/``
-        * Example 1: ``%{assistant_path}/meta/%{shortname}.yaml``
     * own a file named ``%{shortname}.$SUFFIX``, where ``$SUFFIX`` is an image
       file suffix (preferably PNG or SVG), in the directories listed in point
       4.
