@@ -105,7 +105,7 @@ repositories as dap2rpm.
     * own directories named ``%{shortname}`` in directories listed in points 2
       and 3 of the previous bullet.
         * Example 1: ``%{assistant_path}/assistant/crt/%{shortname}``
-        * Example 1: ``%{assistant_path}/files/snippets/%{shortname}``
+        * Example 2: ``%{assistant_path}/files/snippets/%{shortname}``
     * own a directory named ``%{shortname}`` in the directory
       ``%{assistant_path}/doc``
     * own a file named ``%{shortname}.yaml`` in the directory
