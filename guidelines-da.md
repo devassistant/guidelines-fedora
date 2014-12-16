@@ -23,7 +23,9 @@ repositories as dap2rpm.
 
 * Every (RPM) package name must start with ``dap-``, which is followed by the
   name of the Assistant itself, all lowercase. For example, the DAP named
-  ``Openscad`` will be named ``dap-openscad`` in the SPEC file.
+  ``Openscad`` will be named ``dap-openscad`` in the SPEC file. In this
+  document, the second part of the name (i. e. the substring ``openscad``) will
+  be referenced as ``%{shortname}``.
 * There is no difference between packages that provide Assistants, and those
   that provide only auxiliary files, snippets, metapackages etc.
 
