@@ -95,7 +95,7 @@ repositories as dap2rpm.
       separately. That includes subdirectories in ``%{assistant_path}/assistants``,
       as shown in these examples:
         * Bad: ``%{assistant_path}/assistants/*``
-        * Good: ``%{assistant_path}/assistants/crt/%{shortname}``
+        * Good: ``%{assistant_path}/assistants/crt/%{shortname}*``
     * The ``doc`` directory in the DAP should be installed via the ``%doc`` macro,
       in the same ``%{assistant_path}`` directory.
     * The ``meta.yaml`` file must be installed as
